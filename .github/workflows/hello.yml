@@ -1,27 +1,48 @@
-name: First Workflow
+# Name of the workflow
+name: hello workflow
 
+# Trigger the workflow on every push
 on:
   push:
+    branches:
+      - main
 
+# Define the jobs that will run in this workflow
 jobs:
   greet:
+
+    # Specify the runner environment
     runs-on: ubuntu-latest
 
+    # Steps represent tasks executed as part of the job
     steps:
-      - name: Checkout Repository
+
+      # Step 1: Checkout the repository
+      - name: Check repository
         uses: actions/checkout@v4
 
-      - name: Print Greeting
+      # Step 2: Print greeting
+      - name: Print greeting
         run: echo "Hello from GitHub Actions!"
 
-      - name: Print Current Date and Time
+      # Step 3: Print the current date and time
+      - name: Print current date and time
         run: date
 
-      - name: Print Branch Name
-        run: echo "Branch Name: ${{ github.ref_name }}"
+      # Step 4: Print branch name
+      - name: Print branch name
+        run: |
+          echo "Triggered by branch: ${{ github.ref_name }}"
 
-      - name: List Repository Files
+      # Step 5: List repository files
+      - name: List repo files
         run: ls -la
 
-      - name: Print Runner Operating System
-        run: echo "Runner OS: $RUNNER_OS"
+      # Step 6: Print runner operating system
+      - name: Print runner OS
+        run: |
+          echo "Runner OS: ${{ runner.os }}"
+
+      # Step 7: Intentional failure (optional)
+      # - name: Break workflow on purpose
+      #   run: exit 1
