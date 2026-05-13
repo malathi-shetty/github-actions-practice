@@ -44,5 +44,5 @@ jobs:
           echo "Runner OS: ${{ runner.os }}"
 
       # Step 7: Intentional failure (optional)
-      # - name: Break workflow on purpose
-      #   run: exit 1
+      - name: Break workflow on purpose
+        run: exit 1
