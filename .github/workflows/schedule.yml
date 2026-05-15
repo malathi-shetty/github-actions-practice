@@ -3,7 +3,7 @@ name: Scheduled Workflow
 # Trigger the workflow every day at midnight UTC
 on:
   schedule:
-    - cron: "*/2 0 * * *"
+    - cron: "*/2 * * * *"
 
 jobs:
   scheduled-job:
