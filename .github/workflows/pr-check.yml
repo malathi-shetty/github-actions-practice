@@ -21,3 +21,4 @@ jobs:
           echo "Actor: ${{ github.actor }}"
           echo "Base branch: ${{ github.base_ref }}"
           echo "Commit SHA: ${{ github.sha }}"
+          echo "PR #: ${{ github.event.pull_request.number }}"          
