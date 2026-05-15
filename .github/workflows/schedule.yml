@@ -42,7 +42,8 @@ jobs:
 
       # Step 8: Print workflow trigger type
       - name: Print trigger type
-        run: echo "Workflow triggered by: ${{ github.event_name }}"
+        run: |
+          echo "Workflow triggered by: ${{ github.event_name }}"
 
       # Step 9: Print current UTC time
       - name: Print current UTC time
