@@ -1,4 +1,4 @@
-name: Matrix Build Basic Demo (Old)
+name: OLD - DO NOT USE (Matrix Build Basic Demo)
 
 on:
   workflow_dispatch:
