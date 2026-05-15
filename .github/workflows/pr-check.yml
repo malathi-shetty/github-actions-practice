@@ -16,3 +16,8 @@ jobs:
       - name: Print branch name
         run: |
           echo "PR check running for branch: ${{ github.head_ref }}"
+      - name: Print PR metadata
+        run: |
+          echo "Actor: ${{ github.actor }}"
+          echo "Base branch: ${{ github.base_ref }}"
+          echo "Commit SHA: ${{ github.sha }}"
