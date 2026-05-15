@@ -24,40 +24,32 @@ jobs:
           - "3.11"
           - "3.12"
 
-        # Exclude Windows + Python 3.10
         exclude:
           - os: windows-latest
             python-version: "3.10"
 
     steps:
-      # Checkout repo
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # Setup Python
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
 
-      # Print Python version
       - name: Print Python Version
         run: python --version
 
-      # Print matrix info
-      - name: Print environment details
+      - name: Print environment
         run: |
           echo "OS: ${{ matrix.os }}"
           echo "Python: ${{ matrix.python-version }}"
 
-      # Intentional failure (ONLY one job)
       - name: Simulate failure
         if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.11'
         run: |
-          echo "Failing intentionally on Ubuntu + Python 3.11"
+          echo "Failing Ubuntu + Python 3.11"
           exit 1
 
-      # Normal test step
       - name: Run tests
-        run: |
-          python -c "print('All tests passed ✅')"
+        run: python -c "print('All tests passed ✅')"
