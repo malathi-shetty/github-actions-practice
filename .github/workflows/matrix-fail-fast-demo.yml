@@ -1,10 +1,6 @@
 name: Matrix Build with Fail-Fast
 
 on:
-  push:
-    branches:
-      - main
-
   workflow_dispatch:
 
 jobs:
