@@ -1,4 +1,4 @@
-name: Matrix Build with Fail-Fast
+name: Matrix Build with Fail-Fast Demo
 
 on:
   workflow_dispatch:
