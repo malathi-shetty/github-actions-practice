@@ -47,5 +47,5 @@ jobs:
           if [ "$DRY" = "true" ]; then
             echo "DRY RUN → Would deploy $VER to $ENV"
           else
-            echo "Deploying $VER to $ENV ✅"
+            echo "Deploying $VER to $ENV"
           fi
