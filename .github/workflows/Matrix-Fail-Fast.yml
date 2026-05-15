@@ -8,58 +8,56 @@ on:
   workflow_dispatch:
 
 jobs:
-  exclude-fail-fast:
+  test:
     runs-on: ${{ matrix.os }}
 
     strategy:
-      # Continue running other jobs even if one fails
       fail-fast: false
 
       matrix:
         os:
-          - windows-latest
           - ubuntu-latest
+          - windows-latest
 
         python-version:
           - "3.10"
           - "3.11"
           - "3.12"
 
-        # Exclude Python 3.10 on Windows
+        # Exclude Windows + Python 3.10
         exclude:
           - os: windows-latest
             python-version: "3.10"
 
     steps:
-      # Step 1: Checkout repository
+      # Checkout repo
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # Step 2: Setup Python
+      # Setup Python
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
 
-      # Step 3: Print Python version
+      # Print Python version
       - name: Print Python Version
         run: python --version
 
-      # Step 4: Print matrix details
+      # Print matrix info
       - name: Print environment details
         run: |
-          echo "Operating System : ${{ matrix.os }}"
-          echo "Python Version   : ${{ matrix.python-version }}"
+          echo "OS: ${{ matrix.os }}"
+          echo "Python: ${{ matrix.python-version }}"
 
-      # Step 5: Intentionally fail one specific job
+      # Intentional failure (ONLY one job)
       - name: Simulate failure
-        if: matrix.python-version == '3.11' && matrix.os == 'ubuntu-latest'
+        if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.11'
         run: |
-          echo "Simulating failure on Ubuntu + Python 3.11"
+          echo "Failing intentionally on Ubuntu + Python 3.11"
           exit 1
 
-      # Step 6: Simulated test run
+      # Normal test step
       - name: Run tests
         run: |
-          echo "Running tests..."
           python -c "print('All tests passed ✅')"
